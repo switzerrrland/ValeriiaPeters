@@ -10,14 +10,11 @@ public class AdditionTest {
 
     Calculator calculator = new Calculator();
 
-
     @Test(groups = {"first"}, dataProviderClass = DataProviders.class,
             dataProvider = "addition data")
     public void additionTest(long firstNum, long secondNum) {
         long actual = calculator.sum(firstNum, secondNum);
         long expected = 5;
         assertEquals(expected, actual);
-
-
     }
 }

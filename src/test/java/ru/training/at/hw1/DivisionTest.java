@@ -13,7 +13,5 @@ public class DivisionTest {
         long actual = calculator.div(firstNum, secondNum);
         long expected = 155;
         assertEquals(actual, expected);
-
-
     }
 }

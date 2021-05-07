@@ -9,9 +9,6 @@
         <classes>
             <class name="ru.training.at.hw1.AdditionTest"></class>
             <class name="ru.training.at.hw1.SubtractionTest"></class>
-
         </classes>
     </test>
-
-
 </suite>

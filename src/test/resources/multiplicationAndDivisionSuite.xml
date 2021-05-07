@@ -10,9 +10,6 @@
         <classes>
             <class name="ru.training.at.hw1.DivisionTest"></class>
             <class name="ru.training.at.hw1.MultiplicationTest"></class>
-
         </classes>
     </test>
-
-
 </suite>

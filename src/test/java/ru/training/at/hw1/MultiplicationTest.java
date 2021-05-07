@@ -13,7 +13,5 @@ public class MultiplicationTest {
         long actual = calculator.mult(firstNum, secondNum);
         long expected = 600;
         assertEquals(actual, expected);
-
-
     }
 }

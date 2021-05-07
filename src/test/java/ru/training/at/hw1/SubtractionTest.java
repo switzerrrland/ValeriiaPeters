@@ -13,7 +13,5 @@ public class SubtractionTest {
         long actual = calculator.sub(firstNum, secondNum);
         long expected = 42;
         assertEquals(actual, expected);
-
-
     }
 }
