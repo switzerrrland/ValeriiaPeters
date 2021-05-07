@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="all">
+
+    <test name="Test3">
+        <groups>
+            <run>
+                <include name="first"/>
+                <include name="second"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="ru.training.at.hw1.AdditionTest"></class>
+            <class name="ru.training.at.hw1.SubtractionTest"></class>
+            <class name="ru.training.at.hw1.DivisionTest"></class>
+            <class name="ru.training.at.hw1.MultiplicationTest"></class>
+        </classes>
+    </test>
+</suite>
