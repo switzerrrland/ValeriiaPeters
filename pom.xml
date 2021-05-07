@@ -53,6 +53,15 @@
               <version>8.41.1</version>
             </dependency>
           </dependencies>
+          <configuration>
+            <configLocation>
+              <!--  pay attention to use exact url for checkstyle plugin ruleset  -->
+              https://raw.githubusercontent.com/DmitryKhodakovsky/epam-test-auto-spring-2021/master/codestyle_checks.xml
+            </configLocation>
+            <includeTestSourceDirectory>true</includeTestSourceDirectory>
+            <violationSeverity>warning</violationSeverity>
+            <consoleOutput>true</consoleOutput>
+          </configuration>
           <executions>
             <execution>
               <id>checkstyle</id>

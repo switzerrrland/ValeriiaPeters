@@ -12,6 +12,7 @@ public class DataProviders {
     public static Object[][] subtractionData() {
         return new Object[][] {{100, 58}};
     }
+
     @DataProvider(name = "division data")
     public static Object[][] divisionData() {
         return new Object[][] {{3565, 23}};
