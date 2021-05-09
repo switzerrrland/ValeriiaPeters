@@ -7,11 +7,9 @@ import org.testng.asserts.SoftAssert;
 import static org.testng.Assert.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import java.util.List;
 
 public class HeaderAndMenuTextTest {
-
 
     @Test
     public void headerAndMenuTextTest() {
