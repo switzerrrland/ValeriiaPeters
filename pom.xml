@@ -9,7 +9,6 @@
   <version>1.0-SNAPSHOT</version>
 
   <name>ValeriiaPeters</name>
-  <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
   <properties>
@@ -40,7 +39,20 @@
       <version>${calculator.version}</version>
       <systemPath>${project.basedir}/src/main/resources/calculator-1.0.jar</systemPath>
     </dependency>
+
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-chrome-driver</artifactId>
+      <version>4.0.0-beta-3</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>4.0.0-beta-3</version>
+    </dependency>
   </dependencies>
+
 
     <build>
     <pluginManagement>
@@ -120,6 +132,7 @@
     </pluginManagement>
   </build>
 
+
   <profiles>
     <profile>
       <id>additionAndSubtractionTests</id>
@@ -144,6 +157,14 @@
         <testXml>${project.basedir}/src/test/resources/allTestsSuite.xml</testXml>
       </properties>
     </profile>
-  </profiles>
+
+    <profile>
+      <id>hw2</id>
+      <properties>
+        <testXml>${project.basedir}/src/test/resources/hw2Suite.xml</testXml>
+      </properties>
+    </profile>
+</profiles>
+
 
 </project>
