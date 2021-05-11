@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeMethod;
 
 public abstract class JdiPageTest {
     public WebDriver driver;
+    public static final String JDI_HOME_PAGE = "https://jdi-testing.github.io/jdi-light/index.html";
 
     @BeforeMethod
     public void startBrowser() {
@@ -14,7 +15,7 @@ public abstract class JdiPageTest {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
-    
+
     //10, 12. Close Browser
     @AfterMethod
     public void closeBrowser() {

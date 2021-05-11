@@ -10,12 +10,11 @@ import ru.training.at.hw2.JdiPageTest;
 import java.util.List;
 
 public class HeaderAndMenuTextTest extends JdiPageTest {
-    public static final String jdiHomePage = "https://jdi-testing.github.io/jdi-light/index.html";
 
     @Test
     public void headerAndMenuTextTest() {
         //1. Open test site by URL
-        driver.navigate().to(jdiHomePage);
+        driver.navigate().to(JDI_HOME_PAGE);
         //2. Assert Browser title
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(driver.getTitle(), "Home Page");
