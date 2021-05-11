@@ -6,26 +6,23 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.asserts.SoftAssert;
+import ru.training.at.hw2.JdiPageTest;
 import java.util.List;
 
-public class CheckboxTest {
+public class CheckboxTest extends JdiPageTest {
+    public static final String jdiHomePage = "https://jdi-testing.github.io/jdi-light/index.html";
 
     @Test
     public void checkboxTest() {
-        System.setProperty("webdriver.chrome.driver", "./src/test/resources/chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
         //1. Open test site by URL
-        driver.navigate().to("https://jdi-testing.github.io/jdi-light/index.html");
+        driver.navigate().to(jdiHomePage);
         //2. Assert Browser title
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(driver.getTitle(), "Home Page");
         //3. Perform login
         WebElement webElement;
-        webElement = driver.findElement(By.cssSelector("a[href^=\"#\"]"));
+        webElement = driver.findElement(By.className("profile-photo"));
         WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         webDriverWait.until(ExpectedConditions.visibilityOf(webElement));
         webElement.click();
@@ -44,17 +41,15 @@ public class CheckboxTest {
         webDriverWait.until(ExpectedConditions.visibilityOf(webElement));
         softAssert.assertEquals(actualUsername, "ROMAN IOVLEV");
         //5. Open through the header menu Service -> Different Elements Page
-        List<WebElement> headerElements = driver.findElements(By.cssSelector("ul."
-                + "uui-navigation.nav.navbar-nav.m-l8>li"));
-        webDriverWait.until(ExpectedConditions.visibilityOfAllElements(headerElements));
-        webElement = headerElements.get(2);
+        webElement = driver.findElement(By.className("dropdown-toggle"));
+        webDriverWait.until(ExpectedConditions.visibilityOf(webElement));
         webElement.click();
-        webElement = driver.findElement(By.cssSelector("a[href*=\"different-elements.html\"]"));
+        webElement = driver.findElement(By.linkText("DIFFERENT ELEMENTS"));
         webDriverWait.until(ExpectedConditions.visibilityOf(webElement));
         webElement.click();
         //6. Select checkboxes Water, Wind
         List<WebElement> checkboxes = driver.findElements(
-                By.cssSelector("input[type*=\"checkbox\"]"));
+                By.className("label-checkbox"));
         webDriverWait.until(ExpectedConditions.visibilityOfAllElements(checkboxes));
         webElement = checkboxes.get(0);
         webElement.click();
@@ -89,7 +84,5 @@ public class CheckboxTest {
         assertTrue(metalLog.contains("metal: value changed to Selen"));
         String colorLog = logEntries.get(0).getText();
         assertTrue(colorLog.contains("Colors: value changed to Yellow"));
-        //10. Close Browser
-        driver.close();
     }
 }

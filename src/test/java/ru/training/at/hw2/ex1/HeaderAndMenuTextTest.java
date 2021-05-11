@@ -6,25 +6,22 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import ru.training.at.hw2.JdiPageTest;
 import java.util.List;
 
-public class HeaderAndMenuTextTest {
+public class HeaderAndMenuTextTest extends JdiPageTest {
+    public static final String jdiHomePage = "https://jdi-testing.github.io/jdi-light/index.html";
 
     @Test
     public void headerAndMenuTextTest() {
-        System.setProperty("webdriver.chrome.driver", "./src/test/resources/chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
         //1. Open test site by URL
-        driver.navigate().to("https://jdi-testing.github.io/jdi-light/index.html");
+        driver.navigate().to(jdiHomePage);
         //2. Assert Browser title
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(driver.getTitle(), "Home Page");
         //3. Perform login
         WebElement webElement;
-        webElement = driver.findElement(By.cssSelector("a[href^=\"#\"]"));
+        webElement = driver.findElement(By.className("profile-photo"));
         WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         webDriverWait.until(ExpectedConditions.visibilityOf(webElement));
         webElement.click();
@@ -103,7 +100,5 @@ public class HeaderAndMenuTextTest {
         softAssert.assertEquals(leftSectionElements.get(2).getText(), "Service");
         softAssert.assertEquals(leftSectionElements.get(3).getText(), "Metals & Colors");
         softAssert.assertEquals(leftSectionElements.get(4).getText(), "Elements packs");
-        //12. Close Browser
-        driver.close();
     }
 }

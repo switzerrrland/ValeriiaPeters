@@ -9,7 +9,6 @@
   <version>1.0-SNAPSHOT</version>
 
   <name>ValeriiaPeters</name>
-  <url>http://www.example.com</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -148,9 +147,6 @@
   <profiles>
     <profile>
       <id>additionAndSubtractionTests</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
       <properties>
         <testXml>${project.basedir}/src/test/resources/additionAndSubtractionSuite.xml</testXml>
       </properties>
@@ -172,6 +168,9 @@
 
     <profile>
       <id>hw2</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
       <properties>
         <testXml>${project.basedir}/src/test/resources/hw2Suite.xml</testXml>
       </properties>
