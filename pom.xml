@@ -9,8 +9,6 @@
   <version>1.0-SNAPSHOT</version>
 
   <name>ValeriiaPeters</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -23,6 +21,8 @@
     <checkstyle.version>8.41.1</checkstyle.version>
     <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
     <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+    <selenium-java.version>4.0.0-beta-3</selenium-java.version>
+    <selenium-chrome-driver.version>4.0.0-beta-3</selenium-chrome-driver.version>
   </properties>
 
   <dependencies>
@@ -40,7 +40,20 @@
       <version>${calculator.version}</version>
       <systemPath>${project.basedir}/src/main/resources/calculator-1.0.jar</systemPath>
     </dependency>
+
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-chrome-driver</artifactId>
+      <version>${selenium-chrome-driver.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>${selenium-java.version}</version>
+    </dependency>
   </dependencies>
+
 
     <build>
     <pluginManagement>
@@ -118,14 +131,22 @@
         </plugin>
       </plugins>
     </pluginManagement>
-  </build>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>8</source>
+            <target>8</target>
+          </configuration>
+        </plugin>
+      </plugins>
+    </build>
+
 
   <profiles>
     <profile>
       <id>additionAndSubtractionTests</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
       <properties>
         <testXml>${project.basedir}/src/test/resources/additionAndSubtractionSuite.xml</testXml>
       </properties>
@@ -144,6 +165,17 @@
         <testXml>${project.basedir}/src/test/resources/allTestsSuite.xml</testXml>
       </properties>
     </profile>
-  </profiles>
+
+    <profile>
+      <id>hw2</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <testXml>${project.basedir}/src/test/resources/hw2Suite.xml</testXml>
+      </properties>
+    </profile>
+</profiles>
+
 
 </project>
