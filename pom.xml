@@ -168,11 +168,18 @@
 
     <profile>
       <id>hw2</id>
+      <properties>
+        <testXml>${project.basedir}/src/test/resources/hw2Suite.xml</testXml>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>hw3</id>
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
       <properties>
-        <testXml>${project.basedir}/src/test/resources/hw2Suite.xml</testXml>
+        <testXml>${project.basedir}/src/test/resources/hw3Suite.xml</testXml>
       </properties>
     </profile>
 </profiles>
