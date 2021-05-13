@@ -1,26 +1,19 @@
 package ru.training.at.hw3;
 
-import org.openqa.selenium.By;
+import driverutils.WaitActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import java.util.List;
 
+
+//TODO driver manager? video 38 40
 public class JdiPage {
-    @FindBy(className = "profile-photo")
-    private WebElement profileIcon;
-    @FindBy(id = "name")
-    private WebElement user;
-    @FindBy(id = "password")
-    private WebElement password;
-    @FindBy(id = "login-button")
-    private WebElement submitButton;
-    @FindBy(id = "user-name")
-    private WebElement username;
-    @FindBy(css = "ul.uui-navigation.nav.navbar-nav.m-l8>li")
-    List<WebElement> headerElements;
+    private HeaderMenu headerMenu;
+    private LeftSideMenu leftSideMenu;
+    private WaitActions waitActions;
+    private WebDriver driver;
     @FindBy(css = ".icons-benefit")
     List<WebElement> benefitIcons;
     @FindBy(css = ".benefit-txt")
@@ -29,10 +22,6 @@ public class JdiPage {
     private WebElement iframe;
     @FindBy(id = "frame-button")
     private WebElement frameButton;
-    @FindBy(css = "ul.sidebar-menu.left>li")
-    List<WebElement> leftMenuElements;
-    @FindBy(className = "dropdown-toggle")
-    private WebElement service;
     @FindBy(linkText = "DIFFERENT ELEMENTS")
     private WebElement differentElements;
     @FindBy(className = "label-checkbox")
@@ -43,45 +32,24 @@ public class JdiPage {
     WebElement colorSelect;
     @FindBy(css = "option")
     List<WebElement> options;
-
-    public List<WebElement> getLogEntries() {
-        return logEntries;
-    }
-
     @FindBy(css = "ul.panel-body-list.logs>li")
     List<WebElement> logEntries;
+    @FindBy(className = "dropdown-toggle")
+    private WebElement service;
 
-    public void selectColor() {
-        colorSelect.click();
-        options.get(3).click();
+    public JdiPage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+        headerMenu = new HeaderMenu(driver);
+        leftSideMenu = new LeftSideMenu(driver);
+        waitActions = new WaitActions(driver);
     }
 
-    public void selectCheckboxes() {//TODO int...params
-        checkboxes.get(0).click();
-        checkboxes.get(2).click();
+    public HeaderMenu getHeaderMenu() {
+        return headerMenu;
     }
 
-    public void selectRadioButton() {
-        radioButtons.get(3).click();
-    }
-
-    public List<WebElement> getLeftMenuElements() {
-        return leftMenuElements;
-    }
-
-    public void login(String name, String password) { //TODO waiting
-        profileIcon.click();
-        user.sendKeys(name);
-        this.password.sendKeys(password); //TODO this?
-        submitButton.click();
-    }
-
-    public String getUsername() {
-        return username.getText();
-    }
-
-    public List<WebElement> getHeaderElements() {
-        return headerElements;
+    public LeftSideMenu getLeftSideMenu() {
+        return leftSideMenu;
     }
 
     public List<WebElement> getBenefitIcons() {
@@ -105,26 +73,22 @@ public class JdiPage {
         differentElements.click();
     }
 
-    /*    private HeaderMenu headerMenu;
-    private LeftSideMenu leftSideMenu;
-    private LoginForm loginForm;
-
-    public JdiPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        headerMenu = new HeaderMenu();
-        leftSideMenu = new LeftSideMenu();
-        loginForm = new LoginForm();
+    public List<WebElement> getLogEntries() {
+        return logEntries;
     }
 
-    public HeaderMenu getHeaderMenu() {
-        return headerMenu;
+    public void selectColor(int index) {
+        colorSelect.click();
+        options.get(index).click();
     }
 
-    public LeftSideMenu getLeftSideMenu() {
-        return leftSideMenu;
+    public void selectCheckboxes(int...indexes) {
+        for (int index : indexes) {
+            checkboxes.get(index).click();
+        }
     }
 
-    public LoginForm getLoginForm() {
-        return loginForm;
-    }*/
+    public void selectRadioButton(int index) {
+        radioButtons.get(index).click();
+    }
 }

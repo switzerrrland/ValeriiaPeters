@@ -4,35 +4,43 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import ru.training.at.hw3.ContactFormPage;
+import ru.training.at.hw3.JdiPage;
 import ru.training.at.hw3.JdiPageTest;
+import utils.PropertiesReader;
 import java.util.List;
-import static org.testng.Assert.assertEquals;
+import java.util.Properties;
 import static org.testng.Assert.assertTrue;
+import static utils.Constants.*;
+
 
 public class CheckboxTest extends JdiPageTest {
 
     @Test
     public void checkboxTest() {
-        ContactFormPage page = PageFactory.initElements(driver, ContactFormPage.class);
+        JdiPage page = PageFactory.initElements(driver, JdiPage.class);
         SoftAssert softAssert = new SoftAssert();
+        Properties jdiPageProps = PropertiesReader
+                .readProps("src/test/resources/userData.properties");
         //1. Open test site by URL
         driver.navigate().to(JDI_HOME_PAGE);
         //2. Assert Browser title
         softAssert.assertEquals(driver.getTitle(), TITLE);
         //3. Perform login
-        page.getHeaderMenu().login("Roman", "Jdi1234");//TODO properties
+        String name = jdiPageProps.getProperty("name");
+        String password = jdiPageProps.getProperty("password");
+        page.getHeaderMenu().login(name, password);
         //4. Assert Username is loggined
         String actualUsername = page.getHeaderMenu().getUsername();
-        assertEquals(actualUsername, "ROMAN IOVLEV");
+        String expectedUsername = jdiPageProps.getProperty("username");
+        softAssert.assertEquals(actualUsername, expectedUsername);
         //5. Open through the header menu Service -> Different Elements Page
         page.openDifferentElementsPage();
         //6. Select checkboxes Water, Wind
-        page.selectCheckboxes(0, 2); //TODO data providers
+        page.selectCheckboxes(0, 2); //TODO PARAMS
         //7. Select radio Selen
-        page.selectRadioButton(3); //TODO data providers
+        page.selectRadioButton(3); //TODO PARAMS
         //8. Select in dropdown Yellow
-        page.selectColor(3); //TODO data providers
+        page.selectColor(3); //TODO PARAMS
         //9. Assert that for each checkbox there is an individual log row
         // and value is corresponded to the status of checkbox
         //for radio button there is a log row and value is corresponded
