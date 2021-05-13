@@ -1,23 +1,21 @@
-/*
 package ru.training.at.hw3;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
+import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
 public class LeftSideMenu {
 
-    @FindBy(css = "ul.uui-navigation.nav.navbar-nav.m-l8>li")
-    private List<WebElement> leftMenuElements;
+    @FindBy(css = "ul.sidebar-menu.left>li")
+    private List<WebElement> leftMenuItems;
 
-    public void clickLeftMenuItem(final String menuItem) {
-        for (WebElement menuHeaderItem : leftMenuElements) {
-            if (menuItem.equals(menuHeaderItem.getText())) {
-                menuHeaderItem.click();
-                break;
-            }
-        }
+    public List<WebElement> getLeftMenuItems() {
+        return leftMenuItems;
+    }
+
+    public LeftSideMenu(WebDriver driver) {
+        PageFactory.initElements(driver, this);
     }
 }
-*/
