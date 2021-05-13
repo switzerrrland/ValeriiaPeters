@@ -22,4 +22,10 @@ public class Constants {
     public static final String HEADER_ITEM_1 = "CONTACT FORM";
     public static final String HEADER_ITEM_2 = "SERVICE";
     public static final String HEADER_ITEM_3 = "METALS & COLORS";
+    public static final String BENEFIT_TEXT_0 = "To include good practices\n"
+            + " and ideas from successful\n EPAM project";
+    public static final String BENEFIT_TEXT_1 = "To be flexible and\n customizable";
+    public static final String BENEFIT_TEXT_2 = "To be multiplatform";
+    public static final String BENEFIT_TEXT_3 = "Already have good base\n (about 20 internal and\n"
+            + " some external projects),\n wish to get more…";
 }
