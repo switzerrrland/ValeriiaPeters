@@ -7,7 +7,6 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
 public class HeaderMenu {
-
     @FindBy(className = "profile-photo")
     private WebElement profileIcon;
     @FindBy(id = "name")
@@ -25,7 +24,7 @@ public class HeaderMenu {
         PageFactory.initElements(driver, this);
     }
 
-    public void login(String name, String password) { //TODO waiting video 16 27
+    public void login(String name, String password) {
         profileIcon.click();
         user.sendKeys(name);
         this.password.sendKeys(password);
@@ -38,15 +37,5 @@ public class HeaderMenu {
 
     public String getUsername() {
         return username.getText();
-    }
-
-    //TODO remove?
-    public void clickHeaderMenuItem(final String menuItem) {
-        for (WebElement menuHeaderItem : navigationHeader) {
-            if (menuItem.equals(menuHeaderItem.getText())) {
-                menuHeaderItem.click();
-                break;
-            }
-        }
     }
 }

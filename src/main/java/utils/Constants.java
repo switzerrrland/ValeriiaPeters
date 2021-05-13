@@ -2,17 +2,7 @@ package utils;
 
 public class Constants {
     public static final String JDI_HOME_PAGE = "https://jdi-testing.github.io/jdi-light/index.html";
-    public static final String BENEFIT_TEXT_0 = "To include good practices\n"
-            + "and ideas from successful\n"
-            + "EPAM project";
-    public static final String BENEFIT_TEXT_1 = "To be flexible and\n"
-            + "customizable";
-    public static final String BENEFIT_TEXT_2 = "To be multiplatform";
-    public static final String BENEFIT_TEXT_3 = "Already have good base\n"
-            + "(about 20 internal and\n"
-            + "some external projects),\n"
-            + "wish to get more…";
-    //TODO move constants
+    public static final String PATH_TO_PROPERTIES = "src/test/resources/userData.properties";
     public static final String FRAME_ID = "frame";
     public static final String TITLE = "Home Page";
     public static final String WATER_CHANGED_TO_TRUE_ENTRY = "Water: condition changed to true";

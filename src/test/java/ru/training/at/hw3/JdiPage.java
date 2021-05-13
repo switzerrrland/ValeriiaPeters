@@ -7,8 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
-
-//TODO driver manager? video 38 40
 public class JdiPage {
     private HeaderMenu headerMenu;
     private LeftSideMenu leftSideMenu;

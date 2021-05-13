@@ -2,6 +2,7 @@ package ru.training.at.hw3.ex1;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import ru.training.at.hw3.JdiPage;
@@ -14,11 +15,12 @@ import static utils.Constants.*;
 public class HeaderAndMenuTextTest extends JdiPageTest {
 
     @Test
-    public void headerAndMenuTextTest() {
-        JdiPage page = PageFactory.initElements(driver, JdiPage.class); //TODO move away?
+    @Parameters({"benefitText0", "benefitText1", "benefitText2", "benefitText3"})
+    public void headerAndMenuTextTest(String benefitText0, String benefitText1,
+                                      String benefitText2, String benefitText3) {
+        JdiPage page = PageFactory.initElements(driver, JdiPage.class);
         SoftAssert softAssert = new SoftAssert();
-        Properties jdiPageProps = PropertiesReader
-                .readProps("src/test/resources/userData.properties");
+        Properties jdiPageProps = PropertiesReader.readProps(PATH_TO_PROPERTIES);
         //1. Open test site by URL
         driver.navigate().to(String.valueOf(JDI_HOME_PAGE));
         //2. Assert Browser title
@@ -51,10 +53,10 @@ public class HeaderAndMenuTextTest extends JdiPageTest {
         for (WebElement text : texts) {
             softAssert.assertTrue(text.isDisplayed());
         }
-        softAssert.assertEquals(texts.get(0).getText(), BENEFIT_TEXT_0);
-        softAssert.assertEquals(texts.get(1).getText(), BENEFIT_TEXT_1);
-        softAssert.assertEquals(texts.get(2).getText(), BENEFIT_TEXT_2);
-        softAssert.assertEquals(texts.get(3).getText(), BENEFIT_TEXT_3);
+        softAssert.assertEquals(texts.get(0).getText(), benefitText0);
+        softAssert.assertEquals(texts.get(1).getText(), benefitText1);
+        softAssert.assertEquals(texts.get(2).getText(), benefitText2);
+        softAssert.assertEquals(texts.get(3).getText(), benefitText3);
         //8. Assert that there is the iframe with “Frame Button” exist
         WebElement iframe = page.getIframe();
         softAssert.assertTrue(iframe.isDisplayed());

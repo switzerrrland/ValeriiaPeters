@@ -2,6 +2,7 @@ package ru.training.at.hw3.ex2;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import ru.training.at.hw3.JdiPage;
@@ -12,15 +13,15 @@ import java.util.Properties;
 import static org.testng.Assert.assertTrue;
 import static utils.Constants.*;
 
-
 public class CheckboxTest extends JdiPageTest {
 
     @Test
-    public void checkboxTest() {
+    @Parameters({"checkBoxIndex1", "checkBoxIndex2", "radioButtonIndex", "colorIndex"})
+    public void checkboxTest(int checkBoxIndex1, int checkBoxIndex2,
+                             int radioButtonIndex, int colorIndex) {
         JdiPage page = PageFactory.initElements(driver, JdiPage.class);
         SoftAssert softAssert = new SoftAssert();
-        Properties jdiPageProps = PropertiesReader
-                .readProps("src/test/resources/userData.properties");
+        Properties jdiPageProps = PropertiesReader.readProps(PATH_TO_PROPERTIES);
         //1. Open test site by URL
         driver.navigate().to(JDI_HOME_PAGE);
         //2. Assert Browser title
@@ -36,11 +37,11 @@ public class CheckboxTest extends JdiPageTest {
         //5. Open through the header menu Service -> Different Elements Page
         page.openDifferentElementsPage();
         //6. Select checkboxes Water, Wind
-        page.selectCheckboxes(0, 2); //TODO PARAMS
+        page.selectCheckboxes(checkBoxIndex1, checkBoxIndex2);
         //7. Select radio Selen
-        page.selectRadioButton(3); //TODO PARAMS
+        page.selectRadioButton(radioButtonIndex);
         //8. Select in dropdown Yellow
-        page.selectColor(3); //TODO PARAMS
+        page.selectColor(colorIndex);
         //9. Assert that for each checkbox there is an individual log row
         // and value is corresponded to the status of checkbox
         //for radio button there is a log row and value is corresponded
