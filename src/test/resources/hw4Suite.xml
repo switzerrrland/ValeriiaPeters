@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="hw4Suite">
+
+    <test name="hw4Test">
+        <parameter name = "checkBoxIndex1" value="0"/>
+        <parameter name = "checkBoxIndex2" value="2"/>
+        <parameter name = "radioButtonIndex" value="3"/>
+        <parameter name = "colorIndex" value="3"/>
+
+        <classes>
+            <class name="ru.training.at.hw4.ex1.HeaderAndMenuTextTest"></class>
+            <class name="ru.training.at.hw4.ex2.CheckboxTest"></class>
+        </classes>
+    </test>
+</suite>

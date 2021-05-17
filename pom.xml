@@ -20,9 +20,12 @@
     <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
     <checkstyle.version>8.41.1</checkstyle.version>
     <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
-    <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+    <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
     <selenium-java.version>4.0.0-beta-3</selenium-java.version>
     <selenium-chrome-driver.version>4.0.0-beta-3</selenium-chrome-driver.version>
+    <allure-maven.version>2.10.0</allure-maven.version>
+    <aspectj.version>1.8.10</aspectj.version>
+    <allure-testng.version>2.13.10</allure-testng.version>
   </properties>
 
   <dependencies>
@@ -34,6 +37,13 @@
     </dependency>
 
     <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-testng</artifactId>
+      <version>${allure-testng.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+   <dependency>
       <groupId>com.epam.tat.module4</groupId>
       <artifactId>calculator</artifactId>
       <scope>system</scope>
@@ -52,8 +62,13 @@
       <artifactId>selenium-java</artifactId>
       <version>${selenium-java.version}</version>
     </dependency>
-  </dependencies>
 
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>${aspectj.version}</version>
+    </dependency>
+  </dependencies>
 
     <build>
     <pluginManagement>
@@ -107,6 +122,9 @@
             <suiteXmlFiles>
               <suiteXmlFile>${testXml}</suiteXmlFile>
             </suiteXmlFiles>
+            <argLine>
+              -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+            </argLine>
           </configuration>
         </plugin>
         <plugin>
@@ -129,9 +147,6 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
-      </plugins>
-    </pluginManagement>
-      <plugins>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
@@ -141,8 +156,8 @@
           </configuration>
         </plugin>
       </plugins>
+    </pluginManagement>
     </build>
-
 
   <profiles>
     <profile>
@@ -175,14 +190,33 @@
 
     <profile>
       <id>hw3</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
       <properties>
         <testXml>${project.basedir}/src/test/resources/hw3Suite.xml</testXml>
       </properties>
     </profile>
+
+    <profile>
+      <id>hw4</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <testXml>${project.basedir}/src/test/resources/hw4Suite.xml</testXml>
+      </properties>
+    </profile>
 </profiles>
 
-
+  <reporting>
+    <excludeDefaults>true</excludeDefaults>
+    <plugins>
+      <plugin>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-maven</artifactId>
+        <version>2.10.0</version>
+        <configuration>
+          <reportVersion>${allure-maven.version}</reportVersion>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
 </project>
