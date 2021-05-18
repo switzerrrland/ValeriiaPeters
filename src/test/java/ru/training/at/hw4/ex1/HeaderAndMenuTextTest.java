@@ -2,107 +2,112 @@ package ru.training.at.hw4.ex1;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
-import ru.training.at.hw4.JdiPage;
+import org.testng.asserts.SoftAssert;
 import ru.training.at.hw4.JdiPageTest;
 import utils.PropertiesReader;
-
 import java.util.List;
 import java.util.Properties;
-
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static utils.Constants.*;
-//TODO change to soft assert again
-//TODO extra folders so evrth looks neat
 
 public class HeaderAndMenuTextTest extends JdiPageTest {
-    //JdiPage page = PageFactory.initElements(webDriver, JdiPage.class);
+    Properties jdiPageProps = PropertiesReader.readProps(PATH_TO_PROPERTIES);
+    SoftAssert softAssert = new SoftAssert();
 
     @Test
     public void headerAndMenuTextTest() {
-        JdiPage page = PageFactory.initElements(webDriver, JdiPage.class);
-        //SoftAssert softAssert = new SoftAssert();
-        Properties jdiPageProps = PropertiesReader.readProps(PATH_TO_PROPERTIES);
         //1. Open test site by URL
         //2. Assert Browser title
-        openPageAndAssertTitle();
+        openPageAndAssertTitle(TITLE);
         //3. Perform login
-        login(jdiPageProps.getProperty("name"), jdiPageProps.getProperty("password"), page);
         //4. Assert Username is loggined
-        String expectedUsername = jdiPageProps.getProperty("username");
-        assertUsername(expectedUsername, page);
+        login(jdiPageProps.getProperty("name"),
+                jdiPageProps.getProperty("password"),
+                jdiPageProps.getProperty("username"));
         //5. Assert that there are 4 items on the header section
         // are displayed and they have proper texts
-        assertHeader(page);
+        assertHeader(HEADER_ITEMS_COUNT, HEADER_ITEM_0, HEADER_ITEM_1,
+                HEADER_ITEM_2, HEADER_ITEM_3);
         //6. Assert that there are 4 images on the Index Page and they are displayed
-        assertBenefitIcons(page);
         //7. Assert that there are 4 texts on the Index Page under icons and they have proper text
-        assertBenefitTexts(page);
+        assertBenefits(BENEFIT_ICONS_COUNT, BENEFIT_TEXT_COUNT,
+                BENEFIT_TEXT_0, BENEFIT_TEXT_1, BENEFIT_TEXT_2, BENEFIT_TEXT_3);
         //8. Assert that there is the iframe with “Frame Button” exist
-        assertIframeDisplay(page);
+        assertIframeDisplay();
         //9. Switch to the iframe and check that there is “Frame Button” in the iframe
-        assertFrameButtonExists(page);
+        assertFrameButtonExists();
         //10. Switch to original window back
         //11. Assert that there are 5 items in the Left Section
-        assertLeftMenu(page);
+        assertLeftMenu(LEFT_MENU_ITEMS_COUNT, LEFT_MENU_ITEM_0, LEFT_MENU_ITEM_1, LEFT_MENU_ITEM_2,
+                LEFT_MENU_ITEM_3, LEFT_MENU_ITEM_4);
     }
 
-    @Step(value="assert header")
-    public void assertHeader(JdiPage page) {
+    @Step("Assert that the header section has {itemsCount} items with proper texts")
+    public void assertHeader(int itemsCount, String headerText0, String headerText1,
+                             String headerText2, String headerText3) {
         List<WebElement> header = page.getHeaderMenu().getNavigationHeader();
-        assertEquals(header.size(), HEADER_ITEMS_COUNT);
-        assertEquals(header.get(0).getText(), HEADER_ITEM_0);
-        assertEquals(header.get(1).getText(), HEADER_ITEM_1);
-        assertEquals(header.get(2).getText(), HEADER_ITEM_2);
-        assertEquals(header.get(3).getText(), HEADER_ITEM_3);
+        softAssert.assertEquals(header.size(), itemsCount);
+        softAssert.assertEquals(header.get(0).getText(), headerText0);
+        softAssert.assertEquals(header.get(1).getText(), headerText1);
+        softAssert.assertEquals(header.get(2).getText(), headerText2);
+        softAssert.assertEquals(header.get(3).getText(), headerText3);
     }
 
-    @Step("dfjklsdfhjkl")
-    public void assertBenefitIcons(JdiPage page) {
+    @Step("Assert benefits section")
+    public void assertBenefits(int iconsCount, int textsCount,
+                               String text0, String text1, String text2, String text3) {
+        assertBenefitIcons(iconsCount);
+        assertBenefitTexts(textsCount, text0, text1, text2, text3);
+    }
+
+    @Step("Assert that there are {iconsCount} images and they are displayed")
+    public void assertBenefitIcons(int iconsCount) {
         List<WebElement> icons = page.getBenefitIcons();
-        assertEquals(icons.size(), BENEFIT_ICONS_COUNT);
+        softAssert.assertEquals(icons.size(), iconsCount);
         for (WebElement icon : icons) {
             assertTrue(icon.isDisplayed());
         }
     }
 
-    @Step
-    public void assertBenefitTexts(JdiPage page) {//TODO get rid of page everywhere. Move some methods to jditestpage class?
+    @Step("Assert that there are {textsCount} texts under icons with proper text")
+    public void assertBenefitTexts(int textsCount,
+                                   String text0, String text1, String text2, String text3) {
         List<WebElement> texts = page.getBenefitTexts();
-        assertEquals(texts.size(), BENEFIT_TEXT_COUNT);
+        softAssert.assertEquals(texts.size(), textsCount);
         for (WebElement text : texts) {
             assertTrue(text.isDisplayed());
         }
-        assertEquals(texts.get(0).getText(), BENEFIT_TEXT_0);
-        assertEquals(texts.get(1).getText(), BENEFIT_TEXT_1);
-        assertEquals(texts.get(2).getText(), BENEFIT_TEXT_2);
-        assertEquals(texts.get(3).getText(), BENEFIT_TEXT_3);
+        softAssert.assertEquals(texts.get(0).getText(), text0);
+        softAssert.assertEquals(texts.get(1).getText(), text1);
+        softAssert.assertEquals(texts.get(2).getText(), text2);
+        softAssert.assertEquals(texts.get(3).getText(), text3);
     }
 
-    @Step
-    public void assertIframeDisplay(JdiPage page) {
+    @Step("Assert that the iframe with “Frame Button” is displayed")
+    public void assertIframeDisplay() {
         WebElement iframe = page.getIframe();
-        assertTrue(iframe.isDisplayed());
+        softAssert.assertTrue(iframe.isDisplayed());
     }
 
-    @Step
-    public void assertFrameButtonExists(JdiPage page) {
+    @Step("Switch to the iframe and check that there is “Frame Button” in the iframe")
+    public void assertFrameButtonExists() {
         webDriver.switchTo().frame(FRAME_ID);
         WebElement button = page.getFrameButton();
-        assertTrue(button.isDisplayed());
+        softAssert.assertTrue(button.isDisplayed());
     }
 
-    @Step
-    public void assertLeftMenu(JdiPage page) {
+    @Step("Assert that there are {itemsCount} items in the Left Section and they have proper text")
+    public void assertLeftMenu(int itemsCount, String text0, String text1, String text2,
+                               String text3, String text4) {
         webDriver.switchTo().defaultContent();
         List<WebElement> leftMenu = page.getLeftSideMenu().getLeftMenuItems();
-        assertEquals(leftMenu.size(), LEFT_MENU_ITEMS_COUNT);
-        assertEquals(leftMenu.get(0).getText(), LEFT_MENU_ITEM_0);
-        assertEquals(leftMenu.get(1).getText(), LEFT_MENU_ITEM_1);
-        assertEquals(leftMenu.get(2).getText(), LEFT_MENU_ITEM_2);
-        assertEquals(leftMenu.get(3).getText(), LEFT_MENU_ITEM_3);
-        assertEquals(leftMenu.get(4).getText(), LEFT_MENU_ITEM_4);
+        softAssert.assertEquals(leftMenu.size(), itemsCount);
+        softAssert.assertEquals(leftMenu.get(0).getText(), text0);
+        softAssert.assertEquals(leftMenu.get(1).getText(), text1);
+        softAssert.assertEquals(leftMenu.get(2).getText(), text2);
+        softAssert.assertEquals(leftMenu.get(3).getText(), text3);
+        softAssert.assertEquals(leftMenu.get(4).getText(), text4);
     }
 }

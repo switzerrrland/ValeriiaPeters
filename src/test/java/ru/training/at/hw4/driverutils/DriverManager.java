@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import java.util.concurrent.TimeUnit;
 //TODO delete extra manager stuff
 //TODO delete options
+
 public class DriverManager {
     public static WebDriver setUpDriver() {
         WebDriverManager.chromedriver().setup();

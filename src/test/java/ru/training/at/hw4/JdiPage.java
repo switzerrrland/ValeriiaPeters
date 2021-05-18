@@ -1,6 +1,7 @@
 package ru.training.at.hw4;
 
 import driverutils.WaitActions;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,11 +9,16 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
+import static org.testng.Assert.assertEquals;
+import static utils.Constants.JDI_HOME_PAGE;
+import static utils.Constants.TITLE;
+
 public class JdiPage {
     private HeaderMenu headerMenu;
     private LeftSideMenu leftSideMenu;
     private WaitActions waitActions;
-    private WebDriver driver;
+    //private
+    WebDriver webDriver;
     @FindBy(css = ".icons-benefit")
     List<WebElement> benefitIcons;
     @FindBy(css = ".benefit-txt")
@@ -37,6 +43,8 @@ public class JdiPage {
     private WebElement service;
 
     public JdiPage(WebDriver driver) {
+        //
+        this.webDriver = driver;
         PageFactory.initElements(driver, this);
         headerMenu = new HeaderMenu(driver);
         leftSideMenu = new LeftSideMenu(driver);
@@ -46,6 +54,7 @@ public class JdiPage {
     public HeaderMenu getHeaderMenu() {
         return headerMenu;
     }
+
 
     public LeftSideMenu getLeftSideMenu() {
         return leftSideMenu;
@@ -67,27 +76,46 @@ public class JdiPage {
         return frameButton;
     }
 
+    @Step
     public void openDifferentElementsPage() {
         service.click();
         differentElements.click();
     }
 
+    @Step
     public List<WebElement> getLogEntries() {
         return logEntries;
     }
 
+    @Step
     public void selectColor(int index) {
         colorSelect.click();
         options.get(index).click();
     }
 
+    @Step
     public void selectCheckboxes(int...indexes) {
         for (int index : indexes) {
             checkboxes.get(index).click();
         }
     }
 
+    @Step
     public void selectRadioButton(int index) {
         radioButtons.get(index).click();
     }
+    //
+
+    @Step("Open Home page")
+    public void openPage() {
+        webDriver.navigate().to(String.valueOf(JDI_HOME_PAGE));
+    }
+
+    //
+    @Step("Assert title = {title}")
+    public void assertTitle(String title) {
+        assertEquals(webDriver.getTitle(), title);
+    }
+
+
 }
