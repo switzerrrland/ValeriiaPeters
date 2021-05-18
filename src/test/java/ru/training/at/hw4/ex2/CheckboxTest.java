@@ -21,13 +21,13 @@ public class CheckboxTest extends JdiPageTest {
     @Parameters({"checkBoxIndex1", "checkBoxIndex2", "radioButtonIndex", "colorIndex"})
     public void checkboxTest(int checkBoxIndex1, int checkBoxIndex2,
                              int radioButtonIndex, int colorIndex) {
-        JdiPage page = PageFactory.initElements(driver, JdiPage.class);
+        JdiPage page = PageFactory.initElements(webDriver, JdiPage.class);
         SoftAssert softAssert = new SoftAssert();
         Properties jdiPageProps = PropertiesReader.readProps(PATH_TO_PROPERTIES);
         //1. Open test site by URL
-        driver.navigate().to(JDI_HOME_PAGE);
+        webDriver.navigate().to(JDI_HOME_PAGE);
         //2. Assert Browser title
-        softAssert.assertEquals(driver.getTitle(), TITLE);
+        softAssert.assertEquals(webDriver.getTitle(), TITLE);
         //3. Perform login
         String name = jdiPageProps.getProperty("name");
         String password = jdiPageProps.getProperty("password");

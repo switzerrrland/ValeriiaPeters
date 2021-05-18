@@ -26,6 +26,9 @@
     <allure-maven.version>2.10.0</allure-maven.version>
     <aspectj.version>1.8.10</aspectj.version>
     <allure-testng.version>2.13.10</allure-testng.version>
+    <maven-resources-plugin.version>3.0.2</maven-resources-plugin.version>
+    <webdrivermanager.version>4.4.3</webdrivermanager.version>
+    <guice.version>5.0.1</guice.version>
   </properties>
 
   <dependencies>
@@ -68,6 +71,25 @@
       <artifactId>aspectjweaver</artifactId>
       <version>${aspectj.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>com.google.inject</groupId>
+      <artifactId>guice</artifactId>
+      <version>${guice.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.github.bonigarcia</groupId>
+      <artifactId>webdrivermanager</artifactId>
+      <version>${webdrivermanager.version}</version>
+    </dependency>
+<!--    <dependency>
+      <groupId>org.sonatype.sisu</groupId>
+      <artifactId>sisu-guice</artifactId>
+      <version>4.2.2</version>
+      <scope>test</scope>
+    </dependency>-->
+
   </dependencies>
 
     <build>
@@ -108,7 +130,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>3.0.2</version>
+          <version>${maven-resources-plugin.version}</version>
         </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
