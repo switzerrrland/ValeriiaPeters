@@ -8,10 +8,8 @@ import org.testng.asserts.SoftAssert;
 import ru.training.at.hw4.JdiPage;
 import ru.training.at.hw4.JdiPageTest;
 import utils.PropertiesReader;
-
 import java.util.List;
 import java.util.Properties;
-
 import static org.testng.Assert.assertTrue;
 import static utils.Constants.*;
 

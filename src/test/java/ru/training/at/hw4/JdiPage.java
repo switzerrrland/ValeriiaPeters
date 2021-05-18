@@ -17,7 +17,6 @@ public class JdiPage {
     private HeaderMenu headerMenu;
     private LeftSideMenu leftSideMenu;
     private WaitActions waitActions;
-    //private
     WebDriver webDriver;
     @FindBy(css = ".icons-benefit")
     List<WebElement> benefitIcons;
@@ -43,7 +42,6 @@ public class JdiPage {
     private WebElement service;
 
     public JdiPage(WebDriver driver) {
-        //
         this.webDriver = driver;
         PageFactory.initElements(driver, this);
         headerMenu = new HeaderMenu(driver);
@@ -54,7 +52,6 @@ public class JdiPage {
     public HeaderMenu getHeaderMenu() {
         return headerMenu;
     }
-
 
     public LeftSideMenu getLeftSideMenu() {
         return leftSideMenu;
@@ -104,18 +101,14 @@ public class JdiPage {
     public void selectRadioButton(int index) {
         radioButtons.get(index).click();
     }
-    //
 
     @Step("Open Home page")
     public void openPage() {
         webDriver.navigate().to(String.valueOf(JDI_HOME_PAGE));
     }
 
-    //
     @Step("Assert title = {title}")
     public void assertTitle(String title) {
         assertEquals(webDriver.getTitle(), title);
     }
-
-
 }
