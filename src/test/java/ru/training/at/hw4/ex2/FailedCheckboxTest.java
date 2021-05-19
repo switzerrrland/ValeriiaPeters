@@ -6,12 +6,14 @@ import org.testng.annotations.Test;
 import ru.training.at.hw4.DataProviders;
 import ru.training.at.hw4.JdiPageTest;
 import utils.PropertiesReader;
+
 import java.util.List;
 import java.util.Properties;
+
 import static org.testng.Assert.assertTrue;
 import static utils.Constants.*;
 
-public class CheckboxTest extends JdiPageTest {
+public class FailedCheckboxTest extends JdiPageTest {
     Properties jdiPageProps = PropertiesReader.readProps(PATH_TO_PROPERTIES);
 
 
@@ -25,7 +27,7 @@ public class CheckboxTest extends JdiPageTest {
         //4. Assert Username is loggined
         login(jdiPageProps.getProperty("name"),
                 jdiPageProps.getProperty("password"),
-                jdiPageProps.getProperty("username"));
+                "lol");
         //5. Open through the header menu Service -> Different Elements Page
         //6. Select checkboxes Water, Wind
         //7. Select radio Selen

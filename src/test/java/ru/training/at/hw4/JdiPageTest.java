@@ -4,7 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import ru.training.at.hw4.driverutils.DriverManager;
+import ru.training.at.hw4.utils.DriverManager;
 import static org.testng.Assert.assertEquals;
 
 public abstract class JdiPageTest {

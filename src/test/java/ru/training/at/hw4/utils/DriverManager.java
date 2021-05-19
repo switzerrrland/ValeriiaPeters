@@ -1,4 +1,4 @@
-package ru.training.at.hw4.driverutils;
+package ru.training.at.hw4.utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
