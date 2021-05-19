@@ -1,5 +1,6 @@
 package ru.training.at.hw4.ex2;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Parameters;
@@ -14,47 +15,61 @@ import static org.testng.Assert.assertTrue;
 import static utils.Constants.*;
 
 public class CheckboxTest extends JdiPageTest {
+    //JdiPage page = PageFactory.initElements(webDriver, JdiPage.class);
+    Properties jdiPageProps = PropertiesReader.readProps(PATH_TO_PROPERTIES);
 
     @Test
-    @Parameters({"checkBoxIndex1", "checkBoxIndex2", "radioButtonIndex", "colorIndex"})
-    public void checkboxTest(int checkBoxIndex1, int checkBoxIndex2,
-                             int radioButtonIndex, int colorIndex) {
-        JdiPage page = PageFactory.initElements(webDriver, JdiPage.class);
-        SoftAssert softAssert = new SoftAssert();
-        Properties jdiPageProps = PropertiesReader.readProps(PATH_TO_PROPERTIES);
+    //@Parameters({"checkBoxIndex1", "checkBoxIndex2", "radioButtonIndex", "colorIndex"})
+    //public void checkboxTest(int checkBoxIndex1, int checkBoxIndex2,
+    public void checkboxTest(
+                             //int radioButtonIndex, int colorIndex) {
+                             ) {
         //1. Open test site by URL
-        webDriver.navigate().to(JDI_HOME_PAGE);
         //2. Assert Browser title
-        softAssert.assertEquals(webDriver.getTitle(), TITLE);
+        openPageAndAssertTitle(TITLE);
         //3. Perform login
-        String name = jdiPageProps.getProperty("name");
-        String password = jdiPageProps.getProperty("password");
-        page.getHeaderMenu().login(name, password);
         //4. Assert Username is loggined
-        String actualUsername = page.getHeaderMenu().getUsername();
-        String expectedUsername = jdiPageProps.getProperty("username");
-        softAssert.assertEquals(actualUsername, expectedUsername);
+        login(jdiPageProps.getProperty("name"),
+                jdiPageProps.getProperty("password"),
+                jdiPageProps.getProperty("username"));
         //5. Open through the header menu Service -> Different Elements Page
-        page.openDifferentElementsPage();
+        selectElements(0, 2, 3, 3);
+        //page.openDifferentElementsPage();
         //6. Select checkboxes Water, Wind
-        page.selectCheckboxes(checkBoxIndex1, checkBoxIndex2);
+        //page.selectCheckboxes(checkBoxIndex1, checkBoxIndex2);
         //7. Select radio Selen
-        page.selectRadioButton(radioButtonIndex);
+        //page.selectRadioButton(radioButtonIndex);
         //8. Select in dropdown Yellow
-        page.selectColor(colorIndex);
+        //page.selectColor(colorIndex);
         //9. Assert that for each checkbox there is an individual log row
         // and value is corresponded to the status of checkbox
         //for radio button there is a log row and value is corresponded
         // to the status of radio button
         //for dropdown there is a log row and value is corresponded to the selected value.
+        assertLogs(WATER_CHANGED_TO_TRUE_ENTRY, WIND_CHANGED_TO_TRUE_ENTRY,
+                METAL_CHANGED_TO_SELEN_ENTRY, COLOR_CHANGED_TO_YELLOW_ENTRY);
+    }
+
+    @Step("Select elements on Different element page")
+    private void selectElements(int checkBoxIndex1, int checkBoxIndex2,
+                                int radioButtonIndex, int colorIndex) {
+        page.openDifferentElementsPage();
+        page.selectCheckboxes(checkBoxIndex1, checkBoxIndex2);
+        page.selectRadioButton(radioButtonIndex);
+        page.selectColor(colorIndex);
+    }
+
+    @Step("Asserting log entries")
+    private void assertLogs(String expectedWaterLog, String expectedWindLog,
+                            String expectedMetalLog, String expectedColorLog) {
         List<WebElement> log = page.getLogEntries();
         String waterLog = log.get(3).getText();
-        assertTrue(waterLog.contains(WATER_CHANGED_TO_TRUE_ENTRY));
+        assertTrue(waterLog.contains(expectedWaterLog));
         String windLog = log.get(2).getText();
-        assertTrue(windLog.contains(WIND_CHANGED_TO_TRUE_ENTRY));
+        assertTrue(windLog.contains(expectedWindLog));
         String metalLog = log.get(1).getText();
-        assertTrue(metalLog.contains(METAL_CHANGED_TO_SELEN_ENTRY));
+        assertTrue(metalLog.contains(expectedMetalLog));
         String colorLog = log.get(0).getText();
-        assertTrue(colorLog.contains(COLOR_CHANGED_TO_YELLOW_ENTRY));
+        assertTrue(colorLog.contains(expectedColorLog));
     }
 }

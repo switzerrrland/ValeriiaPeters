@@ -73,31 +73,30 @@ public class JdiPage {
         return frameButton;
     }
 
-    @Step
+    @Step("Open \"Different elements\" page")
     public void openDifferentElementsPage() {
         service.click();
         differentElements.click();
     }
 
-    @Step
     public List<WebElement> getLogEntries() {
         return logEntries;
     }
 
-    @Step
+    @Step("Select color")
     public void selectColor(int index) {
         colorSelect.click();
         options.get(index).click();
     }
 
-    @Step
+    @Step("Select checkboxes")
     public void selectCheckboxes(int...indexes) {
         for (int index : indexes) {
             checkboxes.get(index).click();
         }
     }
 
-    @Step
+    @Step("Select radio button")
     public void selectRadioButton(int index) {
         radioButtons.get(index).click();
     }
