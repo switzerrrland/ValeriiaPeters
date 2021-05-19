@@ -2,11 +2,8 @@ package ru.training.at.hw4.ex2;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
-import ru.training.at.hw4.JdiPage;
+import ru.training.at.hw4.DataProviders;
 import ru.training.at.hw4.JdiPageTest;
 import utils.PropertiesReader;
 import java.util.List;
@@ -15,15 +12,12 @@ import static org.testng.Assert.assertTrue;
 import static utils.Constants.*;
 
 public class CheckboxTest extends JdiPageTest {
-    //JdiPage page = PageFactory.initElements(webDriver, JdiPage.class);
     Properties jdiPageProps = PropertiesReader.readProps(PATH_TO_PROPERTIES);
 
-    @Test
-    //@Parameters({"checkBoxIndex1", "checkBoxIndex2", "radioButtonIndex", "colorIndex"})
-    //public void checkboxTest(int checkBoxIndex1, int checkBoxIndex2,
-    public void checkboxTest(
-                             //int radioButtonIndex, int colorIndex) {
-                             ) {
+
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "elements indexes")
+    public void checkboxTest(int checkBoxIndex1, int checkBoxIndex2,
+                             int radioButtonIndex, int colorIndex) {
         //1. Open test site by URL
         //2. Assert Browser title
         openPageAndAssertTitle(TITLE);
@@ -33,14 +27,10 @@ public class CheckboxTest extends JdiPageTest {
                 jdiPageProps.getProperty("password"),
                 jdiPageProps.getProperty("username"));
         //5. Open through the header menu Service -> Different Elements Page
-        selectElements(0, 2, 3, 3);
-        //page.openDifferentElementsPage();
+        selectElements(checkBoxIndex1, checkBoxIndex2, radioButtonIndex, colorIndex);
         //6. Select checkboxes Water, Wind
-        //page.selectCheckboxes(checkBoxIndex1, checkBoxIndex2);
         //7. Select radio Selen
-        //page.selectRadioButton(radioButtonIndex);
         //8. Select in dropdown Yellow
-        //page.selectColor(colorIndex);
         //9. Assert that for each checkbox there is an individual log row
         // and value is corresponded to the status of checkbox
         //for radio button there is a log row and value is corresponded
