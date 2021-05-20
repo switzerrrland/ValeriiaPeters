@@ -11,6 +11,10 @@ public abstract class JdiPageTest {
     public WebDriver webDriver;
     protected JdiPage page;
 
+    public WebDriver getDriver() {
+        return webDriver;
+    }
+
     @BeforeMethod
     public void startBrowser() {
         webDriver = DriverManager.setUpDriver();

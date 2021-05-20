@@ -7,14 +7,16 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import ru.training.at.hw4.JdiPageTest;
 import utils.PropertiesReader;
+
 import java.util.List;
 import java.util.Properties;
-import static org.testng.Assert.assertEquals;
+
 import static org.testng.Assert.assertTrue;
 import static utils.Constants.*;
+
 @Listeners(ru.training.at.hw4.utils.Listener.class)
 
-public class HeaderAndMenuTextTest extends JdiPageTest {
+public class FailedHeaderTest extends JdiPageTest {
     Properties jdiPageProps = PropertiesReader.readProps(PATH_TO_PROPERTIES);
     SoftAssert softAssert = new SoftAssert();
 
@@ -27,7 +29,7 @@ public class HeaderAndMenuTextTest extends JdiPageTest {
         //4. Assert Username is loggined
         login(jdiPageProps.getProperty("name"),
                 jdiPageProps.getProperty("password"),
-                jdiPageProps.getProperty("username"));
+                "PETR");
         //5. Assert that there are 4 items on the header section
         // are displayed and they have proper texts
         assertHeader(HEADER_ITEMS_COUNT, HEADER_ITEM_0, HEADER_ITEM_1,

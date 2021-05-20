@@ -2,6 +2,7 @@ package ru.training.at.hw4.ex2;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import ru.training.at.hw4.DataProviders;
 import ru.training.at.hw4.JdiPageTest;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Properties;
 import static org.testng.Assert.assertTrue;
 import static utils.Constants.*;
+@Listeners(ru.training.at.hw4.utils.Listener.class)
 
 public class CheckboxTest extends JdiPageTest {
     Properties jdiPageProps = PropertiesReader.readProps(PATH_TO_PROPERTIES);
