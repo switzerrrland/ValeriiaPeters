@@ -1,13 +1,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="hw4Suite">
     <listeners>
-        <listener class-name="ru.training.at.hw4.utils.Listener"/>
+        <listener class-name="ru.training.at.hw4.utils.ScreenshotListener"/>
     </listeners>
     <test name="hw4Test">
         <classes>
             <class name="ru.training.at.hw4.ex1.HeaderAndMenuTextTest"></class>
             <class name="ru.training.at.hw4.ex2.CheckboxTest"></class>
-            <!--<class name="ru.training.at.hw4.ex2.FailedCheckboxTest"></class>-->
             <class name="ru.training.at.hw4.ex1.FailedHeaderTest"></class>
         </classes>
     </test>

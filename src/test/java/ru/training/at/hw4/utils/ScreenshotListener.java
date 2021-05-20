@@ -8,23 +8,19 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import ru.training.at.hw4.JdiPageTest;
 
-public class Listener implements ITestListener {
+public class ScreenshotListener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        System.out.println("This test is failed. Taking a screenshot");
-
         try {
-            doScreenshot(((JdiPageTest) result.getInstance()).getDriver());
+            makeScreenshot(((JdiPageTest) result.getInstance()).getDriver());
         } catch (NullPointerException npe) {
             System.out.println("Driver not found");
         }
     }
 
-
     @Attachment(type = "image/png", fileExtension = "png")
-    private byte[] doScreenshot(WebDriver driver) {
+    private byte[] makeScreenshot(WebDriver driver) {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
-
 }
