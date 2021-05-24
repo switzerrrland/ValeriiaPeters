@@ -23,9 +23,9 @@ public class Constants {
     public static final String HEADER_ITEM_2 = "SERVICE";
     public static final String HEADER_ITEM_3 = "METALS & COLORS";
     public static final String BENEFIT_TEXT_0 = "To include good practices\n"
-            + " and ideas from successful\n EPAM project";
-    public static final String BENEFIT_TEXT_1 = "To be flexible and\n customizable";
+            + "and ideas from successful\nEPAM project";
+    public static final String BENEFIT_TEXT_1 = "To be flexible and\ncustomizable";
     public static final String BENEFIT_TEXT_2 = "To be multiplatform";
-    public static final String BENEFIT_TEXT_3 = "Already have good base\n (about 20 internal and\n"
-            + " some external projects),\n wish to get more…";
+    public static final String BENEFIT_TEXT_3 = "Already have good base\n(about 20 internal and\n"
+            + "some external projects),\nwish to get more…";
 }
