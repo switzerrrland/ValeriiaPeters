@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="hw5Suite">
+<!--    <listeners>
+        <listener class-name="ru.training.at.hw5.utils.ScreenshotListener"/>
+    </listeners>-->
+    <test name="hw5Test">
+        <classes>
+            <class name="ru.training.at.hw5.RunAllCucumberAcceptanceTests"></class>
+        </classes>
+    </test>
+</suite>
