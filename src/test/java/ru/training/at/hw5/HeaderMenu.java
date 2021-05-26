@@ -32,6 +32,13 @@ public class HeaderMenu {
         submitButton.click();
     }
 
+    public void login() {
+        profileIcon.click();
+        user.sendKeys("Roman");
+        this.password.sendKeys("Jdi1234");
+        submitButton.click();
+    }
+
     public List<WebElement> getNavigationHeader() {
         return navigationHeader;
     }

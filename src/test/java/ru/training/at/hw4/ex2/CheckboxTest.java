@@ -25,7 +25,7 @@ public class CheckboxTest extends JdiPageTest {
                              int colorIndex) {
         //1. Open test site by URL
         //2. Assert Browser title
-        openPageAndAssertTitle(TITLE);
+        openPageAndAssertTitle(HOME_PAGE_TITLE);
         //3. Perform login
         //4. Assert Username is loggined
         login(jdiPageProps.getProperty("name"),

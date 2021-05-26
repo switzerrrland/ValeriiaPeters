@@ -4,7 +4,8 @@ public class Constants {
     public static final String JDI_HOME_PAGE = "https://jdi-testing.github.io/jdi-light/index.html";
     public static final String PATH_TO_PROPERTIES = "src/test/resources/userData.properties";
     public static final String FRAME_ID = "frame";
-    public static final String TITLE = "Home Page";
+    public static final String HOME_PAGE_TITLE = "Home Page";
+    public static final String USER_TABLE_PAGE_TITLE = "User Table";
     public static final String WATER_CHANGED_TO_TRUE_ENTRY = "Water: condition changed to true";
     public static final String WIND_CHANGED_TO_TRUE_ENTRY = "Wind: condition changed to true";
     public static final String METAL_CHANGED_TO_SELEN_ENTRY = "metal: value changed to Selen";
@@ -28,4 +29,5 @@ public class Constants {
     public static final String BENEFIT_TEXT_2 = "To be multiplatform";
     public static final String BENEFIT_TEXT_3 = "Already have good base\n(about 20 internal and\n"
             + "some external projects),\nwish to get more…";
+
 }

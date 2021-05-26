@@ -25,7 +25,7 @@ public class CheckboxTest extends JdiPageTest {
         //1. Open test site by URL
         driver.navigate().to(JDI_HOME_PAGE);
         //2. Assert Browser title
-        softAssert.assertEquals(driver.getTitle(), TITLE);
+        softAssert.assertEquals(driver.getTitle(), HOME_PAGE_TITLE);
         //3. Perform login
         String name = jdiPageProps.getProperty("name");
         String password = jdiPageProps.getProperty("password");

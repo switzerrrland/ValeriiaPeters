@@ -1,10 +1,11 @@
-Feature: JDI page selecting checkboxes
+Feature: Different elements page selecting checkboxes
 
-  Scenario: JDI page. Select elements checkboxes
-    Given I open JDI home page
-    And I login with name = 'Roman' and password = 'Jdi1234'
-    And I open 'Different Elements Page' in header menu 'Service'
-    When I select checkboxes 'Water' and 'Wind'
+  Scenario: Different elements page. Select elements checkboxes
+    Given I open JDI GitHub site
+    And I login as user "Roman Iovlev"
+    When I click on "Service" button in Header
+    And I click on 'Different Elements Page' in Service dropdown
+    And I select checkboxes 'Water' and 'Wind'
     And I select radiobutton 'Selen'
     And I select 'Yellow' in dropdown
     Then log entries should contain "Water: condition changed to true"

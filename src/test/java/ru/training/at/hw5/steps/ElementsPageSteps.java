@@ -5,22 +5,18 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.DataProvider;
 import ru.training.at.hw5.JdiPage;
 import ru.training.at.hw5.context.TestContext;
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.testng.Assert.assertTrue;
 import static utils.Constants.*;
 
 public class ElementsPageSteps {
     WebDriver driver = TestContext.getInstance().getTestObject(TestContext.WEB_DRIVER);
     JdiPage page = new JdiPage(driver);
-    //List<String> log = page.getLogEntriesAsString();
 
 
-    @Given("I open 'Different Elements Page' in header menu 'Service'")
+    @Given("I click on 'Different Elements Page' in Service dropdown")
     public void openElementsPageFromHeaderMenu() {
         page.openDifferentElementsPage();
     }
@@ -46,6 +42,7 @@ public class ElementsPageSteps {
         String waterLog = log.get(3).getText();
         assertTrue(waterLog.contains(WATER_CHANGED_TO_TRUE_ENTRY));
     }
+
     @Then("log entries should contain \"Wind: condition changed to true\"")
     public void assertLogEntriesContainWind() {
         List<WebElement> log = page.getLogEntries();
