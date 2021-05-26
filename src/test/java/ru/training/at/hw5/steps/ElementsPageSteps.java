@@ -1,8 +1,6 @@
 package ru.training.at.hw5.steps;
 
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import io.cucumber.java.en.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.training.at.hw5.JdiPage;

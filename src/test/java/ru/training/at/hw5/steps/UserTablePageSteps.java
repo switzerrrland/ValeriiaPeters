@@ -8,7 +8,6 @@ import org.testng.Assert;
 import ru.training.at.hw5.JdiPage;
 import ru.training.at.hw5.context.TestContext;
 import utils.CucumberTableIntoListsConverter;
-
 import java.util.List;
 import static utils.Constants.*;
 

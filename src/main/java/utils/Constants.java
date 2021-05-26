@@ -29,5 +29,4 @@ public class Constants {
     public static final String BENEFIT_TEXT_2 = "To be multiplatform";
     public static final String BENEFIT_TEXT_3 = "Already have good base\n(about 20 internal and\n"
             + "some external projects),\nwish to get more…";
-
 }
