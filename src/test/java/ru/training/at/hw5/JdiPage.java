@@ -52,7 +52,13 @@ public class JdiPage {
     @FindBy(css = "#user-table>tbody>tr>td:nth-child(4)>div.user-descr>input[type='checkbox']")
     public List<WebElement> userTableCheckBoxes;
     @FindBy(css = "table tr:nth-child(1)>td:nth-child(2) option")
-    private List<WebElement> userDropdownValues;
+    List<WebElement> userDropdownValues;
+    @FindBy(id = "ivan")
+    private WebElement ivanVipCheckbox;
+
+    public void selectVipCheckboxForIvanUser() {
+        ivanVipCheckbox.click();
+    }
 
     public List<String> getUserTableNumbersListAsString() {
         List<String> result = userTableNumbersList.stream().map(WebElement::getText)

@@ -7,15 +7,15 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import ru.training.at.hw5.JdiPage;
 import ru.training.at.hw5.context.TestContext;
+import utils.CucumberTableIntoListsConverter;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import static utils.Constants.*;
 
 public class UserTablePageSteps {
     WebDriver driver = TestContext.getInstance().getTestObject(TestContext.WEB_DRIVER);
     JdiPage page = new JdiPage(driver);
+    CucumberTableIntoListsConverter converter = new CucumberTableIntoListsConverter();
 
     @When("I click on \"User Table\" button in Service dropdown")
     public void clickOnUserTableButtonInServiceDropdown() {
@@ -45,7 +45,7 @@ public class UserTablePageSteps {
         }
     }
 
-    @Then("{int} Description texts under images should be displayed on Users Table on User Table Page")
+    @Then("{int} Description texts should be displayed on Users Table on User Table Page")
     public void assertDescriptionTextsAreDisplayed(int textsCount) {
         List<WebElement> descriptionTexts = page.getUserTableDescriptionTexts();
         Assert.assertEquals(descriptionTexts.size(), textsCount);
@@ -55,7 +55,7 @@ public class UserTablePageSteps {
     }
 
     @Then("{int} checkboxes should be displayed on Users Table on User Table Page")
-    public void assertCheckboxesAreDisplayed( int checkboxesCount) {
+    public void assertCheckboxesAreDisplayed(int checkboxesCount) {
         List<WebElement> checkboxes = page.getUserTableCheckBoxes();
         Assert.assertEquals(checkboxes.size(), checkboxesCount);
         for (WebElement checkbox : checkboxes) {
@@ -63,18 +63,11 @@ public class UserTablePageSteps {
         }
     }
 
-    //TODO refactor
     @Then("User table should contain following values:")
     public void assertTableContainsValues(DataTable table) throws Throwable {
-        List<List<String>> expectedTableValues = table.asLists();
-        List<String> numbersColumn = new ArrayList<>();
-        List<String> usersColumn = new ArrayList<>();
-        List<String> descriptionsColumn = new ArrayList<>();
-        for (int i = 1; i < expectedTableValues.size(); i++) {
-            numbersColumn.add((expectedTableValues.get(i).get(0)));
-            usersColumn.add((expectedTableValues.get(i).get(1)));
-            descriptionsColumn.add((expectedTableValues.get(i).get(2)));
-        }
+        List<String> numbersColumn = converter.getNumbersColumn(table);
+        List<String> usersColumn = converter.getUsersColumn(table);
+        List<String> descriptionsColumn = converter.getDescriptionsColumn(table);
         Assert.assertEquals(numbersColumn, page.getUserTableNumbersListAsString());
         Assert.assertEquals(usersColumn, page.getUserTableUsersListAsString());
         Assert.assertEquals(descriptionsColumn, page.getUserTableDescriptionsListAsString());
@@ -82,8 +75,7 @@ public class UserTablePageSteps {
 
     @Then("droplist should contain values in column Type for user Roman")
     public void assertDroplistContainsValuesForUser(DataTable table) throws Throwable {
-        List<String> initialTable = table.asList();
-        List<String> expectedValues = new ArrayList<>(initialTable.subList(1, initialTable.size()));
+        List<String> expectedValues = converter.getDropdownValuesColumn(table);
         List<String> actualValues = page.getUserDropdownValuesAsString();
         Assert.assertEquals(actualValues, expectedValues);
     }

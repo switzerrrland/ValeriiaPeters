@@ -2,7 +2,6 @@ package ru.training.at.hw5.context;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +18,7 @@ public final class TestContext {
     public <T> T getTestObject(String key) {
         return (T) context.get(key);
     }
+
     public void cleanContext() {
         context.clear();
     }
@@ -30,4 +30,3 @@ public final class TestContext {
         return instance;
     }
 }
-

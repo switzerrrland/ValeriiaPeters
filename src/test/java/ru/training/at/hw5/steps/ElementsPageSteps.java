@@ -15,7 +15,6 @@ public class ElementsPageSteps {
     WebDriver driver = TestContext.getInstance().getTestObject(TestContext.WEB_DRIVER);
     JdiPage page = new JdiPage(driver);
 
-
     @Given("I click on 'Different Elements Page' in Service dropdown")
     public void openElementsPageFromHeaderMenu() {
         page.openDifferentElementsPage();
@@ -63,5 +62,4 @@ public class ElementsPageSteps {
         String colorLog = log.get(0).getText();
         assertTrue(colorLog.contains(COLOR_CHANGED_TO_YELLOW_ENTRY));
     }
-
 }
