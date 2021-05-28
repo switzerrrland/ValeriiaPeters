@@ -29,6 +29,9 @@
     <maven-resources-plugin.version>3.0.2</maven-resources-plugin.version>
     <webdrivermanager.version>4.4.3</webdrivermanager.version>
     <guice.version>5.0.1</guice.version>
+    <cucumber-testng.version>6.10.4</cucumber-testng.version>
+    <cucumber-java.version>6.10.4</cucumber-java.version>
+    <assertj-core.version>3.19.0</assertj-core.version>
   </properties>
 
   <dependencies>
@@ -83,12 +86,32 @@
       <artifactId>webdrivermanager</artifactId>
       <version>${webdrivermanager.version}</version>
     </dependency>
-<!--    <dependency>
-      <groupId>org.sonatype.sisu</groupId>
-      <artifactId>sisu-guice</artifactId>
-      <version>4.2.2</version>
+
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-testng</artifactId>
+      <version>${cucumber-testng.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <version>${cucumber-java.version}</version>
+    </dependency>
+
+      <dependency>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+          <version>RELEASE</version>
+          <scope>test</scope>
+      </dependency>
+
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>${assertj-core.version}</version>
       <scope>test</scope>
-    </dependency>-->
+    </dependency>
 
   </dependencies>
 
@@ -219,11 +242,18 @@
 
     <profile>
       <id>hw4</id>
+      <properties>
+        <testXml>${project.basedir}/src/test/resources/hw4Suite.xml</testXml>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>hw5</id>
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
       <properties>
-        <testXml>${project.basedir}/src/test/resources/hw4Suite.xml</testXml>
+        <testXml>${project.basedir}/src/test/resources/hw5Suite.xml</testXml>
       </properties>
     </profile>
 </profiles>
