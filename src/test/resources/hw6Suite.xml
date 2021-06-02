@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="hw6Suite">
+    <test name="hw6Test">
+        <classes>
+            <class name="ru.training.at.hw6.JdiSiteTest"></class>
+        </classes>
+    </test>
+</suite>
