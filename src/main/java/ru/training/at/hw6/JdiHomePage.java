@@ -25,6 +25,6 @@ public class JdiHomePage extends WebPage {
     }
 
     public void selectMetalsAndColorsPageFromHeaderMenu() {
-        headerMenu.select(4);
+        headerMenu.select("Metals & Colors");
     }
 }
